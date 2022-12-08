@@ -1,24 +1,18 @@
 import './Navbar.css'
-import Button from './buttons/Button'
-import CartWidget from '../CartWidget/CartWidget'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-const Navbar = (props) => {
-
-    const handleOneClick = () => {
-            alert("hice un click")
-    }
+const Navbar = () => {
+    const navigate = useNavigate()
 
     return (
-        <nav class = "navbar">
-            <h1 style={{color: props.colortitle}}>MyApp</h1>
-            <Button text ="Home" colorText="blue" func={handleOneClick} />
-            <Button text ="Contact" colorText="blue" func={handleOneClick} />
-            <Button text ="Products" colorText="blue" func={handleOneClick} />
-            <Button text ="About" colorText="blue" func={handleOneClick} />
-            <CartWidget />
+        <nav style={{ display: 'flex'}}>
+             <NavLink to='/' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Todo</NavLink>
+            <NavLink to='/category/categoria1' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 1</NavLink>
+            <NavLink to='/category/categoria2' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 2</NavLink>
+            <NavLink to='/category/categoria3' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 3</NavLink>
+            <NavLink to='/category/categoria4' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 4</NavLink>
         </nav>
     )
-        
 }
 
 export default Navbar
