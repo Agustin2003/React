@@ -1,9 +1,8 @@
 .App {
   text-align: center;
-}
-
-.Main{
-  width: 900px;
+  background-image: url(https://www.teahub.io/photos/full/98-987941_vintage-black-leather-background.jpg);
+  height: 900px;
+  color: white;
 }
 
 .App-logo {

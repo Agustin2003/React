@@ -1,16 +1,17 @@
-import './Navbar.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom"
+import CartWidget from "../CartWidget/CartWidget"
+import "./Navbar.css"
 
 const Navbar = () => {
-    const navigate = useNavigate()
-
     return (
-        <nav style={{ display: 'flex'}}>
-             <NavLink to='/' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Todo</NavLink>
-            <NavLink to='/category/categoria1' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 1</NavLink>
-            <NavLink to='/category/categoria2' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 2</NavLink>
-            <NavLink to='/category/categoria3' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 3</NavLink>
-            <NavLink to='/category/categoria4' className={({ isActive }) => isActive ? 'ActiveOption' : 'Option' }>Categoria 4</NavLink>
+        <nav style={{ display: 'flex', justifyContent: 'space-around'}}>
+            <h1>Ecommerce</h1>
+            <div style={{ display: 'flex', justifyContent: 'space-around', width: '75%'}}>
+                <Link className="Option" to='/'>Ver todo</Link>
+                <Link className="Option" to='/category/blanco-negro'>Blanco y Negro</Link>
+                <Link className="Option" to='/category/color'>Color</Link>
+            </div>
+            <CartWidget/>
         </nav>
     )
 }

@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
-import ProductDetailContainer from './components/ProductDetailContainer/ProductDetailContainer';
-import ProductsContainer from './components/ProductsContainer/ProductContainer';
+import { CartProvider } from './context/CartContext';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
+
 
 
 
@@ -12,19 +16,22 @@ function App() {
 
 
   return (
-    <main className='Main'>
-      <div className="App">
+    <div className="App">
+      <CartProvider>
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path='/' element={<ProductsContainer />}/>
-            <Route path='/category/:categoryId' element={<ProductsContainer />}/>
-            <Route path='/product/:productId' element={<ProductDetailContainer /> } />
+            <Route path='/' element={<ItemListContainer />} />
+            <Route path='/category/:categoryId' element={<ItemListContainer />} />
+            <Route path='/detail/:productId' element={<ItemDetailContainer />}/>
+            <Route path='/cart' element={<Cart />}/>
+            <Route path='/checkout' element={<Checkout />}/>
           </Routes>
         </BrowserRouter>
-      </div>
-    </main>
+      </CartProvider>
+    </div>
   );
 }
+
 
 export default App;
