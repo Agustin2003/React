@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
+import { Form } from 'react-router-dom'
 
 import { collection, getDocs, query, where, documentId, writeBatch, addDoc } from 'firebase/firestore'
 import { db } from '../../services/firebase/firebaseConfig'
 
 import { useNavigate } from 'react-router-dom'
+import { stripBasename } from '@remix-run/router'
 
 const Checkout = () => {
     const { cart, getTotal, clearCart } = useContext(CartContext)
@@ -12,15 +14,19 @@ const Checkout = () => {
 
     const navigate = useNavigate()
 
+    const [nombre, setNombre] = useState("")
+    const [email, setEmail] = useState("")
+    const [numero, setNumero] = useState("")
+
     const handleCreateOrder = async () => {
         setLoading(true)
 
         try {
             const objOrder = {
                 buyer: {
-                    name: 'Agustin Ferigni',
-                    email: 'contact@gustin.io',
-                    phone: '123456789'
+                    name: {nombre},
+                    email: {email},
+                    phone: {numero}
                 },
                 items: cart,
                 total: getTotal()
@@ -83,7 +89,22 @@ const Checkout = () => {
     return (
         <div>
             <h1>Checkout</h1>
-            {/* <Form /> */}
+            
+
+             <form>
+                    <label for="nombre">Dime tu Nombre: <br/>
+                    <input type="text" placeholder="Nombre y Apellido" value={nombre} onChange={(e) => setNombre(e.target.value)} /> <br/><br/>
+                    </label><br/><br/>
+                    <label for="telefono">Dime tu Telefono: <br/>
+                    <input type="string" placeholder="Numero de telefono" value={numero} onChange={(e) => setNumero(e.target.value)}/> <br/><br/>
+                    </label><br/><br/>
+                    <label for="email">Dime tu Email: <br/>
+                        <input type="email" placeholder="aaa@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/><br/>
+                    </label><br/><br/> 
+
+            </form> 
+             
+
             <button onClick={handleCreateOrder}>Confirmar orden</button>
         </div>
     )
