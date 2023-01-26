@@ -1,12 +1,11 @@
 import { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
-import { Form } from 'react-router-dom'
+
 
 import { collection, getDocs, query, where, documentId, writeBatch, addDoc } from 'firebase/firestore'
 import { db } from '../../services/firebase/firebaseConfig'
 
 import { useNavigate } from 'react-router-dom'
-import { stripBasename } from '@remix-run/router'
 
 const Checkout = () => {
     const { cart, getTotal, clearCart } = useContext(CartContext)
